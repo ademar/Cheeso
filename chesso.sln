@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{f2a71f9b-5d33-465a-a702-920d77279786}") = "chesso", "chesso\chesso.fsproj", "{3B6CD3CD-F1AF-4CB0-AFE2-FA53D5F5D1A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B6CD3CD-F1AF-4CB0-AFE2-FA53D5F5D1A9}.Debug|x86.ActiveCfg = Debug|x86
+		{3B6CD3CD-F1AF-4CB0-AFE2-FA53D5F5D1A9}.Debug|x86.Build.0 = Debug|x86
+		{3B6CD3CD-F1AF-4CB0-AFE2-FA53D5F5D1A9}.Release|x86.ActiveCfg = Release|x86
+		{3B6CD3CD-F1AF-4CB0-AFE2-FA53D5F5D1A9}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal
