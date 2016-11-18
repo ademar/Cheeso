@@ -1,0 +1,30 @@
+﻿
+module Model
+
+open System.Runtime.Serialization
+
+[<DataContract>]
+type Move = {
+  [<field: DataMember(Name = "color")>]
+  color : string;
+  [<field: DataMember(Name = "from")>]
+  from  : string;
+  [<field: DataMember(Name = "to")>]
+  ``to``    : string;
+  [<field: DataMember(Name = "flags")>]
+  flags : string;
+  [<field: DataMember(Name = "piece")>]
+  piece : string;
+  [<field: DataMember(Name = "san")>]
+  san   : string; // Standard Algebraic Notation
+  }
+
+[<DataContract>]
+type Message = {
+  [<field: DataMember(Name = "move")>]
+  move : Move;
+  [<field: DataMember(Name = "gameId")>]
+  gameId  : string;
+  [<field: DataMember(Name = "board")>]
+  board    : string;
+  }
