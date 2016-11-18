@@ -16,7 +16,7 @@ var initGame = function (websocket) {
       if (move === null) { 
         return 'snapback';
       } else {
-         sendMessage(websocket, $.toJSON({move: move, gameId: "xxx-yyy-zzz", board: game.fen()}));
+         sendMessage(websocket, $.toJSON({move: move, board: game.fen()}));
       }
     };
 
@@ -42,10 +42,12 @@ var onDragStart = function(source, piece, position, orientation) {
 
 var onMessage = function(msg){
   // update board with adversari's move
+   game.move(msg.move);
 }; 
 
 var init = function() {
-  var websocket = new WebSocket(wsUri);
+  var gameId = $("#gameId").val();
+  var websocket = new WebSocket(wsUri + '/' + gameId);
   websocket.onmessage = onMessage;
   initGame(websocket);
 }

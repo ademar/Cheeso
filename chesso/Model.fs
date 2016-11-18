@@ -23,8 +23,13 @@ type Move = {
 type Message = {
   [<field: DataMember(Name = "move")>]
   move : Move;
-  [<field: DataMember(Name = "gameId")>]
-  gameId  : string;
   [<field: DataMember(Name = "board")>]
   board    : string;
   }
+
+type Game = { 
+  id : string
+  wid    : string
+  bid    : string
+  wes    : Event<Message>
+  bes    : Event<Message> }

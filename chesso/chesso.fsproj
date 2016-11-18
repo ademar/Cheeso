@@ -46,10 +46,20 @@
       <HintPath>..\packages\Suave.2.0.0-rc1\lib\net40\Suave.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.3.7.5\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Suave.Razor">
+      <HintPath>..\packages\Suave.Razor.1.1.3\lib\net40\Suave.Razor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="Session.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +69,7 @@
     <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\default.html">
+    <Content Include="Views\default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="css\chessboard-0.3.0.css">
@@ -114,6 +124,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="js\jquery.json.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\game.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
