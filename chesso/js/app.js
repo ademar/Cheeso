@@ -11,14 +11,14 @@ var initGame = function (websocket) {
 
     var handleMove = function(source, target) {
 
-		  var move = game.move({from: source, to: target});
+      var move = game.move({from: source, to: target});
 
-		  if (move === null) { 
-		    return 'snapback';
-		  } else {
-		     sendMessage(websocket, $.toJSON({move: move, gameId: "xxx-yyy-zzz", board: game.fen()}));
-		  }
-		};
+      if (move === null) { 
+        return 'snapback';
+      } else {
+         sendMessage(websocket, $.toJSON({move: move, gameId: "xxx-yyy-zzz", board: game.fen()}));
+      }
+    };
 
     var cfg = {
         draggable: true,
