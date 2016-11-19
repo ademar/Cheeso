@@ -61,8 +61,11 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
       while !loop do
         let! msg = 
           Async.AwaitEvent theyMoved.Publish
+        let bts = toJson msg
+        let txt = UTF8.toString bts
+        Console.WriteLine("received:{0}",txt)
         // relay adversary move upstream
-        let! u = webSocket.send Text (ArraySegment(toJson msg)) true
+        let! u = webSocket.send Text (ArraySegment(bts)) true
         match u with
         | Choice1Of2  () -> ()
         | Choice2Of2 err -> failwith (err.ToString())
@@ -79,7 +82,7 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
         let msg = fromJson<Message> data
         // relay our move to adversary
         weMoved.Trigger msg
-        Console.WriteLine str
+        Console.WriteLine("sent:{0}",str)
       | (Ping, _, _) ->
         do! webSocket.send Pong emptyArrSeg true
       | (Close, _, _) ->
@@ -88,10 +91,19 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
       | _ -> ()
   }
 
+type GamePageView = { game : Game; playerColor : string }
+
+let gamePage userId gameId =
+  let game = games.[gameId];
+  let playerColor =
+    if game.wid = userId then "white"
+    else "black"
+  razor "game" { game = game; playerColor = playerColor }
+
 let app : WebPart =
   statefulForSession >=> choose [
-    pathScan "/game/%s" (fun gameId -> razor "game" games.[gameId] )
-    pathScan "/websocket/%s" (fun gameId -> requiresAuthentication (fun userId -> handShake (wsHandler userId gameId)))
+    pathScan "/game/%s" (fun gameId -> requiresAuthentication(fun userId -> gamePage userId gameId))
+    pathScan "/websocket/%s" (fun gameId -> requiresAuthentication(fun userId -> handShake (wsHandler userId gameId)))
     path "/create" >=> requiresAuthentication createGame
     path "/logon" >=> logOn
     pathScan "/join/%s" joinGame

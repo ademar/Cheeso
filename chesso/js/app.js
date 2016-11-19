@@ -1,13 +1,11 @@
 
 var wsUri = "ws://localhost:3000/websocket";
 
-var playerColor = "w";
-
 var sendMessage = function(websocket,msg) {
   websocket.send(msg);
 }
 
-var initGame = function (websocket) {
+var initGame = function (playerColor,websocket) {
 
     var handleMove = function(source, target) {
 
@@ -20,9 +18,19 @@ var initGame = function (websocket) {
       }
     };
 
+    var onDragStart = function(source, piece, position, orientation) {
+      if (game.game_over() === true ||
+          (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
+          (game.turn() === 'b' && piece.search(/^w/) !== -1) ||
+          (game.turn() !== playerColor[0])) {
+        return false;
+      }
+    };
+
     var cfg = {
         draggable: true,
         position: 'start',
+        orientation: playerColor,
         onDrop: handleMove,
         onDragStart: onDragStart
     };
@@ -31,25 +39,20 @@ var initGame = function (websocket) {
     game = new Chess();
 }
 
-var onDragStart = function(source, piece, position, orientation) {
-  if (game.game_over() === true ||
-      (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-      (game.turn() === 'b' && piece.search(/^w/) !== -1) ||
-      (game.turn() !== playerColor[0])) {
-    return false;
-  }
-};
-
 var onMessage = function(msg){
   // update board with adversari's move
-   game.move(msg.move);
+  console.log("received: " + msg.data);
+  let jso = $.parseJSON(msg.data);
+  game.move(jso.move);
+  board.position(game.fen());
 }; 
 
 var init = function() {
   var gameId = $("#gameId").val();
+  var playerColor = $("#playerColor").val();;
   var websocket = new WebSocket(wsUri + '/' + gameId);
   websocket.onmessage = onMessage;
-  initGame(websocket);
+  initGame(playerColor, websocket);
 }
 
 $(document).ready(init);
