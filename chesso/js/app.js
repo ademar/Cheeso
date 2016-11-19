@@ -29,6 +29,7 @@ var initGame = function (playerColor,websocket) {
 
     var cfg = {
         draggable: true,
+        showNotation: false,
         position: 'start',
         orientation: playerColor,
         onDrop: handleMove,
