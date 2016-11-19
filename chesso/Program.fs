@@ -40,13 +40,22 @@ let createGame userId =
     games.Add (game.id, game)
     Successful.OK (sprintf "Created game %s" game.id)
 
+let monitor = new obj()
+
+let tryJoin (game: Game) userId =
+  fun () ->
+    if String.IsNullOrEmpty game.bid then
+      games.Remove game.id |> ignore
+      games.Add(game.id, { game with bid = userId })
+
 let joinGame gameId =
   requiresAuthentication 
     (fun userId ->
-      let game = games.[gameId]
-      games.Remove gameId |> ignore
-      games.Add(gameId, { game with bid = userId })
-      Successful.OK (sprintf "Joined game %s" gameId))
+      lock monitor (tryJoin games.[gameId] userId)
+      if String.IsNullOrEmpty games.[gameId].wid then
+        Successful.OK (sprintf "Failed to join game %s" gameId)
+      else
+        Successful.OK (sprintf "Joined game %s" gameId))
 
 let logOn =
   sessionState' (fun st -> 
