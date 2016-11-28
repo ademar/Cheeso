@@ -8,6 +8,8 @@ open Suave.Json
 open Suave.WebSocket
 open Suave.Sockets
 open Suave.Sockets.Control
+open Suave.Logging
+open Suave.Logging.Message
 
 open Globals
 open Model
@@ -23,7 +25,7 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
           Async.AwaitEvent theyMoved.Publish
         let bts = toJson msg
         let txt = UTF8.toString bts
-        Console.WriteLine("received:{0}",txt)
+        logger.logSimple(event Verbose (sprintf "received:%s" txt))
         // relay adversary move upstream
         let! u = webSocket.send Text (ArraySegment(bts)) true
         match u with
@@ -42,7 +44,7 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
         let msg = fromJson<Message> data
         // relay our move to adversary
         weMoved.Trigger msg
-        Console.WriteLine("sent:{0}",str)
+        logger.logSimple(event Verbose (sprintf "sent:%s" str))
       | (Ping, _, _) ->
         do! webSocket.send Pong emptyArrSeg true
       | (Close, _, _) ->
