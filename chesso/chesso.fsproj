@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>chesso</RootNamespace>
     <AssemblyName>chesso</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,22 +40,35 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.0.1\lib\net40\FSharp.Core.dll</HintPath>
+      <HintPath>..\packages\FSharp.Core.4.0.1.7-alpha\lib\net40\FSharp.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Suave">
-      <HintPath>..\packages\Suave.2.0.0-rc1\lib\net40\Suave.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.4.0.0-rc1-final\lib\net451\Microsoft.AspNet.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Web.Razor">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.AspNetCore.Razor">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.1.0.0\lib\net451\Microsoft.AspNetCore.Razor.dll</HintPath>
     </Reference>
     <Reference Include="RazorEngine">
-      <HintPath>..\packages\RazorEngine.3.7.5\lib\net45\RazorEngine.dll</HintPath>
+      <HintPath>..\packages\RazorEngine.4.4.3-rc1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Suave">
+      <HintPath>..\packages\Suave.2.0.0-rc2\lib\net40\Suave.dll</HintPath>
     </Reference>
     <Reference Include="Suave.Razor">
-      <HintPath>..\packages\Suave.Razor.1.1.3\lib\net40\Suave.Razor.dll</HintPath>
+      <HintPath>..\packages\Suave.Razor.2.0.0-rc2\lib\net40\Suave.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET">
+      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+    <Reference Include="Suave.Minify">
+      <HintPath>..\packages\Suave.Minify.1.0.0-alpha1\lib\net461\Suave.Minify.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -125,14 +138,14 @@
     <Content Include="js\app.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="js\jquery-3.1.1.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="js\jquery.json.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\game.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="js\jquery-3.1.1.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
