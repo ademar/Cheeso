@@ -3,7 +3,7 @@ var wsUri = "ws://localhost:3000/websocket";
 
 var sendMessage = function(websocket,msg) {
   websocket.send(msg);
-}
+};
 
 var initGame = function (playerColor,websocket) {
 
@@ -38,12 +38,12 @@ var initGame = function (playerColor,websocket) {
 
     board = new ChessBoard('gameBoard', cfg);
     game = new Chess();
-}
+};
 
 var onMessage = function(msg){
   // update board with adversari's move
   console.log("received: " + msg.data);
-  let jso = $.parseJSON(msg.data);
+  var jso = $.parseJSON(msg.data);
   game.move(jso.move);
   board.position(game.fen());
 }; 
@@ -54,6 +54,6 @@ var init = function() {
   var websocket = new WebSocket(wsUri + '/' + gameId);
   websocket.onmessage = onMessage;
   initGame(playerColor, websocket);
-}
+};
 
 $(document).ready(init);
