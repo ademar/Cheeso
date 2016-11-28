@@ -25,6 +25,7 @@ let app : WebPart =
     pathScan "/join/%s" joinGame
     pathRegex "(.*?)\.(fsx|dll|mdb|log|chtml)$" >=> RequestErrors.FORBIDDEN "Access denied.";
     GET >=> choose [
+      path "/jscripts" >=> Minify.jsBundle ["/js/jquery-3.1.1.min.js"; "/js/jquery.json.min.js"; "/js/chess.js"; "/js/chessboard-0.3.0.js"; "/js/app.js"]
       path "/" >=> razor "default" (Seq.map (fun (a) -> a) games.Values);
       Files.browseHome
       ]
