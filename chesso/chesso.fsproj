@@ -22,7 +22,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants></DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <ExternalConsole>true</ExternalConsole>
     <GenerateTailCalls>true</GenerateTailCalls>
@@ -69,12 +70,6 @@
     <Reference Include="Suave.Minify">
       <HintPath>..\packages\Suave.Minify.1.0.0-alpha1\lib\net461\Suave.Minify.dll</HintPath>
     </Reference>
-    <Reference Include="protobuf-net">
-      <HintPath>..\packages\protobuf-net.2.0.0.666\lib\net40\protobuf-net.dll</HintPath>
-    </Reference>
-    <Reference Include="RethinkDb">
-      <HintPath>..\packages\rethinkdb-net.0.12.1.0\lib\net45\RethinkDb.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
@@ -82,7 +77,6 @@
     <Compile Include="Model.fs" />
     <Compile Include="Session.fs" />
     <Compile Include="Games.fs" />
-    <Compile Include="Users.fs" />
     <Compile Include="Channel.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
