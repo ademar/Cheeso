@@ -1,6 +1,10 @@
 
 var host = window.location.host;
-var wsUri = "ws://"+ host+ "/websocket";
+var schema = "ws://";
+if (window.location.protocol == "https" ){
+  schema = "wss://";
+};
+var wsUri = schema + host + "/websocket";
 
 var sendMessage = function(websocket,msg) {
   websocket.send(msg);
