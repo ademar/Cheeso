@@ -1,1 +1,1 @@
-web: mono chesso/bin/Debug/cheeso.exe
+web: mono chesso/bin/Debug/chesso.exe
