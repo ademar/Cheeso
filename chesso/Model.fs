@@ -33,3 +33,6 @@ type Game = {
   bid    : string
   wes    : Event<Message>
   bes    : Event<Message> }
+
+type User = { 
+  id : string }

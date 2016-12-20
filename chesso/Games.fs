@@ -58,3 +58,11 @@ let gamePage userId gameId =
     if game.wid = userId then "white"
     else "black"
   razor "game" { game = game; playerColor = playerColor }
+
+let newUser _ : User =
+  { id = Guid.NewGuid().ToString() }
+
+let createUser =
+    let user = newUser()
+    // TODO: persist to database
+    Successful.OK (sprintf "Created user %s" user.id)
