@@ -20,7 +20,7 @@ let app : WebPart =
     pathScan "/game/%s" (fun gameId -> requiresAuthentication(fun userId -> Games.gamePage userId gameId))
     pathScan "/websocket/%s" (fun gameId -> requiresAuthentication(fun userId -> handShake (Channel.wsHandler userId gameId)))
     path "/logon" >=> Games.logOn
-    path "/signin" >=> razor "sigin" null
+    path "/signin" >=> razor "signin" null
     pathScan "/join/%s" Games.joinGame
     pathRegex "(.*?)\.(fsx|dll|mdb|log|chtml)$" >=> RequestErrors.FORBIDDEN "Access denied.";
     GET >=> choose [
