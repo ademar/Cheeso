@@ -1,5 +1,6 @@
 
-var wsUri = "ws://localhost:3000/websocket";
+var host = window.location.host;
+var wsUri = "ws://"+ host+ "/websocket";
 
 var sendMessage = function(websocket,msg) {
   websocket.send(msg);
