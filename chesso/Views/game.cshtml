@@ -1,16 +1,13 @@
-﻿
-<html>
-	<head>
-		<title>Chesso the Chess Engine</title>
-		<base href="/" />
-		<link rel="stylesheet" href="css/chessboard-0.3.0.css" />
-		<script src="jscripts"></script>
-	</head>
-	<body>
-		<h1>Chesso the Chess Engine</h1>
-		<h2>Game</h2>
-		<input type="hidden" name="gameId" id="gameId" value="@Model.game.id" />
-		<input type="hidden" name="playerColor" id="playerColor" value="@Model.playerColor" />
-		<div id="gameBoard" style="width: 400px"></div>
-	</body>
-</html>
+﻿@{
+    Layout = "layout.cshtml";
+}
+@section JavaScript
+{
+    <link rel="stylesheet" href="css/chessboard-0.3.0.css" />
+    <script src="jscripts"></script>
+}
+<h1>Chesso the Chess Engine</h1>
+<h2>Game</h2>
+<input type="hidden" name="gameId" id="gameId" value="@Model.game.id" />
+<input type="hidden" name="playerColor" id="playerColor" value="@Model.playerColor" />
+<div id="gameBoard" style="width: 400px"></div>

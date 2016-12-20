@@ -47,7 +47,7 @@
     <Compile Include="Games.fs" />
     <Compile Include="Channel.fs" />
     <Compile Include="Program.fs" />
-    <Content Include="Views\default.cshtml">
+    <Content Include="Views\layout.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\game.cshtml">

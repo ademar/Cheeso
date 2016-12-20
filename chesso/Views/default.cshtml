@@ -1,24 +1,21 @@
 ﻿
-<html>
-	<head>
-		<title>Chesso the Chess Engine</title>
-	</head>
-	<body>
-		<h1>Chesso the Chess Engine</h1>
-		<h2>Game list</h2>
-		<table>
-		<tr>
-			<td>game id</td>
-			<td>white</td>
-			<td>black</td>
-		</tr>
-		@foreach (var item in Model){
-		<tr>
-			<td>@item.id</td>
-			<td>@item.wid</td>
-			<td>@item.bid</td>
-		</tr>
-		}
-		</table>
-	</body>
-</html>
+@{
+    Layout = "layout.cshtml";
+}
+<h1>Chesso the Chess Engine</h1>
+<h2>Game list</h2>
+<table>
+    <tr>
+        <td>game id</td>
+        <td>white</td>
+        <td>black</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.id</td>
+            <td>@item.wid</td>
+            <td>@item.bid</td>
+        </tr>
+    }
+</table>
