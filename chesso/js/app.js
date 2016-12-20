@@ -1,7 +1,7 @@
 
 var host = window.location.host;
 var schema = "ws://";
-if (window.location.protocol == "https" ){
+if (window.location.protocol == "https:" ){
   schema = "wss://";
 };
 var wsUri = schema + host + "/websocket";
