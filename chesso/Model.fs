@@ -35,4 +35,8 @@ type Game = {
   bes    : Event<Message> }
 
 type User = { 
-  id : string }
+  id : string
+  displayName : string
+  email : string
+  encryptedPassword : string
+  salt : string }

@@ -35,58 +35,18 @@
   <PropertyGroup Condition="'$(VisualStudioVersion)' == '10.0' OR '$(VisualStudioVersion)' == '11.0'">
     <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.0.1.7-alpha\lib\net40\FSharp.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Razor">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.4.0.0-rc1-final\lib\net451\Microsoft.AspNet.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.AspNetCore.Razor">
-      <HintPath>..\packages\Microsoft.AspNetCore.Razor.1.0.0\lib\net451\Microsoft.AspNetCore.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="RazorEngine">
-      <HintPath>..\packages\RazorEngine.4.4.3-rc1\lib\net45\RazorEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Suave">
-      <HintPath>..\packages\Suave.2.0.0-rc2\lib\net40\Suave.dll</HintPath>
-    </Reference>
-    <Reference Include="Suave.Razor">
-      <HintPath>..\packages\Suave.Razor.2.0.0-rc2\lib\net40\Suave.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="EcmaScript.NET">
-      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="Yahoo.Yui.Compressor">
-      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
-    </Reference>
-    <Reference Include="Suave.Minify">
-      <HintPath>..\packages\Suave.Minify.1.0.0-alpha1\lib\net461\Suave.Minify.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Globals.fs" />
     <Compile Include="Model.fs" />
+    <Compile Include="Utils.fs" />
+    <Compile Include="Binding.fs" />
+    <Compile Include="Database.fs" />
     <Compile Include="Session.fs" />
     <Compile Include="Games.fs" />
     <Compile Include="Channel.fs" />
     <Compile Include="Program.fs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="js\" />
-    <Folder Include="css\" />
-    <Folder Include="img\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -147,9 +107,55 @@
     <Content Include="img\chesspieces\wikipedia\wR.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
+    <Content Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Reference Include="mscorlib" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Suave">
+      <HintPath>..\packages\Suave.2.0.0-rc3\lib\net40\Suave.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Suave.Experimental">
+      <HintPath>..\packages\Suave.Experimental.2.0.0-rc3\lib\net40\Suave.Experimental.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Suave.Razor">
+      <HintPath>..\packages\Suave.Razor.2.0.0-rc3\lib\net40\Suave.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="FSharp.Core">
+      <HintPath>..\packages\FSharp.Core.4.0.1.7-alpha\lib\net40\FSharp.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.4.0.0-rc1-final\lib\net451\Microsoft.AspNet.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.AspNetCore.Razor">
+      <HintPath>..\packages\Microsoft.AspNetCore.Razor.1.0.0\lib\net451\Microsoft.AspNetCore.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorEngine">
+      <HintPath>..\packages\RazorEngine.4.4.3-rc1\lib\net45\RazorEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET">
+      <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\packages\YUICompressor.NET.2.7.0.0\lib\NET20\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+    <Reference Include="Suave.Minify">
+      <HintPath>..\packages\Suave.Minify.1.0.0-alpha1\lib\net461\Suave.Minify.dll</HintPath>
+    </Reference>
   </ItemGroup>
-  <Import Project="$(FSharpTargetsPath)" />
 </Project>

@@ -4,6 +4,7 @@ open System.Collections.Generic
 
 open Model
 open Session
+open Binding
 
 open Suave
 open Suave.Operators
@@ -59,10 +60,15 @@ let gamePage userId gameId =
     else "black"
   razor "game" { game = game; playerColor = playerColor }
 
-let newUser _ : User =
-  { id = Guid.NewGuid().ToString() }
+let newUser displayName email password : User =
+  let hash,salt = Utils.hashUserPassword password
+  { id = Guid.NewGuid().ToString(); displayName = displayName; email = email; encryptedPassword = hash; salt = salt }
+
+let getUser cont =
+  "displayName" >>. (fun a -> "email" >>. (fun b -> "password" >>. (fun c -> cont a b c)))
 
 let createUser =
-    let user = newUser()
-    // TODO: persist to database
-    Successful.OK (sprintf "Created user %s" user.id)
+  getUser(fun displayName email password ->
+    let user = newUser displayName email password
+    Database.saveUser user
+    Successful.OK (sprintf "Created user %s" user.id))
