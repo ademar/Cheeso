@@ -39,11 +39,15 @@ let config port =
     { defaultConfig with
        bindings = 
          [ { scheme = HTTP ; socketBinding = { ip = IPAddress.Parse "0.0.0.0" ; port = port }}; ]
+       logger = Targets.create Verbose
     }
 
 [<EntryPoint>]
 let main argv = 
-  let port = if argv.Length>0 then Convert.ToUInt16(argv.[0]) else 3000us
+  let _port = System.Environment.GetEnvironmentVariable("PORT")
+  let port = 
+    if _port = null then 3000us
+    else Convert.ToUInt16 _port
   startWebServer (config port) app
   0
 

@@ -1,5 +1,10 @@
 
-var wsUri = "ws://localhost:3000/websocket";
+var host = window.location.host;
+var schema = "ws://";
+if (window.location.protocol == "https:" ){
+  schema = "wss://";
+};
+var wsUri = schema + host + "/websocket";
 
 var sendMessage = function(websocket,msg) {
   websocket.send(msg);

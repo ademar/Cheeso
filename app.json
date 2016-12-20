@@ -1,0 +1,9 @@
+{
+  "name": "Chesso",
+  "description": "A realtime chess engine",
+  "website": "http://chesso.net/",
+  "repository": "https://github.com/ademar/Cheeso",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/SuaveIO/mono-script-buildpack.git"
+  }
+}
