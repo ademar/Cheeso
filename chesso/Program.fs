@@ -14,13 +14,11 @@ open System.Net
 
 open Globals
 open Session
-open Games
 
 let app : WebPart =
   statefulForSession >=> choose [
     pathScan "/game/%s" (fun gameId -> requiresAuthentication(fun userId -> gamePage userId gameId))
     pathScan "/websocket/%s" (fun gameId -> requiresAuthentication(fun userId -> handShake (Channel.wsHandler userId gameId)))
-    path "/create" >=> requiresAuthentication createGame
     path "/logon" >=> logOn
     pathScan "/join/%s" joinGame
     pathRegex "(.*?)\.(fsx|dll|mdb|log|chtml)$" >=> RequestErrors.FORBIDDEN "Access denied.";
@@ -28,6 +26,11 @@ let app : WebPart =
       path "/jscripts" >=> Minify.jsBundle ["/js/jquery-3.1.1.min.js"; "/js/jquery.json.min.js"; "/js/chess.js"; "/js/chessboard-0.3.0.js"; "/js/app.js"]
       path "/" >=> razor "default" (Seq.map (fun (a) -> a) games.Values);
       Files.browseHome
+      ]
+    POST >=> choose [
+      path "/createGame" >=> requiresAuthentication Games.createGame    
+      path "/createUser" >=> requiresAuthentication Users.createUser
+
       ]
     RequestErrors.NOT_FOUND "File not found."
     ] >=> log logger logFormat;
