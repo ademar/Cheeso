@@ -19,7 +19,6 @@ let app : WebPart =
   statefulForSession >=> choose [
     pathScan "/game/%s" (fun gameId -> requiresAuthentication(fun userId -> Games.gamePage userId gameId))
     pathScan "/websocket/%s" (fun gameId -> requiresAuthentication(fun userId -> handShake (Channel.wsHandler userId gameId)))
-    path "/logon" >=> Games.logOn
     pathScan "/join/%s" Games.joinGame
     pathRegex "(.*?)\.(fsx|dll|mdb|log|chtml)$" >=> RequestErrors.FORBIDDEN "Access denied.";
     GET >=> choose [

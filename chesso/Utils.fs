@@ -16,11 +16,15 @@ let randomStr =
 open System.Text
 open System.Security.Cryptography
 
-let hashUserPassword (pwd: string) =
+let hashUserPasswordWithSalt (pwd: string) (salt:string)=
   let salt = randomStr SALT_LENGTH
-  let bs = Encoding.UTF8.GetBytes (salt + pwd)
+  let bs = Encoding.UTF8.GetBytes (pwd + salt)
   use hasher = new SHA256Managed()
   let bss = hasher.ComputeHash(bs)
-  Encoding.UTF8.GetString bss, salt
+  Encoding.UTF8.GetString bss
+
+let hashUserPassword (pwd: string) =
+  let salt = randomStr SALT_LENGTH
+  hashUserPasswordWithSalt pwd salt, salt
 
 let utcNow _ = DateTime.UtcNow

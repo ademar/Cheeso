@@ -23,3 +23,10 @@ let saveUser (user: User) =
   tx.Query "INSERT INTO users (id,displayName,email,encryptedPassword,salt,createdOn,lastSeen) VALUES (%s,%s,%s,%s,%s,%s,%s)" 
     user.id user.displayName user.email user.encryptedPassword user.salt user.createdOn user.lastSeen
   |> executeNonQuery
+
+let selectUserByEmail (email:string) : User option =
+  use cn = open_connection ()
+  let tx = sql cn
+  tx { 
+    let! q = tx.Query "SELECT * FROM users WHERE email=%s" email
+    return q }

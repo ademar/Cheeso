@@ -46,9 +46,8 @@ let joinGame gameId =
       else
         Successful.OK (sprintf "Joined game %s" gameId))
 
-let logOn =
+let logOn userId =
   sessionState' (fun st -> 
-    let userId = Guid.NewGuid().ToString()
     st.set UIDSTR userId >=> Successful.OK (sprintf "Welcome user: %s" userId))
 
 type GamePageView = { game : Game; playerColor : string }
@@ -79,4 +78,12 @@ let createUser =
 
 let logonUser =
   getLogin(fun email password ->
-    Successful.OK (sprintf "User %s logged on" email))
+    match Database.selectUserByEmail email with
+    | Some user ->
+      if Utils.hashUserPasswordWithSalt password user.salt = user.encryptedPassword then
+        sessionState' (fun st -> 
+          st.set UIDSTR email >=> 
+          Successful.OK (sprintf "User %s logged on" email))
+      else
+        Successful.OK "Invalid password"
+    | None -> RequestErrors.BAD_REQUEST "Email not found")
