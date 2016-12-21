@@ -1,6 +1,7 @@
 ﻿
 module Model
 
+open System
 open System.Runtime.Serialization
 
 [<DataContract>]
@@ -41,5 +42,5 @@ type User = {
   email : string
   encryptedPassword : string
   salt : string
-  createdOn : string
-  lastSeen : string }
+  createdOn : DateTime
+  lastSeen : DateTime }

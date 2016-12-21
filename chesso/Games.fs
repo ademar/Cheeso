@@ -61,7 +61,7 @@ let gamePage userId gameId =
 
 let newUser displayName email password : User =
   let hash,salt = Utils.hashUserPassword password
-  let utcNow = (Utils.utcNow ()).ToString("yyyy-MM-dd H:mm:ss")
+  let utcNow = Utils.utcNow ()
   { id = Guid.NewGuid().ToString(); uid = 0; displayName = displayName; email = email; encryptedPassword = hash; salt = salt; createdOn = utcNow; lastSeen = utcNow }
 
 let getUser cont =

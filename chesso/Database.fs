@@ -20,8 +20,9 @@ let open_connection () =
 let saveUser (user: User) =
   use cn = open_connection ()
   let tx = sql cn
+  let createdOn = user.createdOn.ToString("yyyy-MM-dd H:mm:ss")
   tx.Query "INSERT INTO users (id,displayName,email,encryptedPassword,salt,createdOn,lastSeen) VALUES (%s,%s,%s,%s,%s,%s,%s)" 
-    user.id user.displayName user.email user.encryptedPassword user.salt user.createdOn user.lastSeen
+    user.id user.displayName user.email user.encryptedPassword user.salt createdOn createdOn
   |> executeNonQuery
 
 let selectUserByEmail (email:string) : User option =
