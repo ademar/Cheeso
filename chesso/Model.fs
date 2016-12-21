@@ -36,6 +36,7 @@ type Game = {
 
 type User = { 
   id : string
+  uid : int
   displayName : string
   email : string
   encryptedPassword : string
