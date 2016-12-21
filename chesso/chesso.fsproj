@@ -59,6 +59,9 @@
 	<Content Include="Views\signin.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+	<Content Include="Views\signup.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="css\chessboard-0.3.0.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

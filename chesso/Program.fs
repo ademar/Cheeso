@@ -30,7 +30,8 @@ let app : WebPart =
       ]
     POST >=> choose [
       path "/createGame" >=> requiresAuthentication Games.createGame
-      path "/signin" >=> Games.createUser
+      path "/signup" >=> Games.createUser
+      path "/signin" >=> Games.logonUser
       ]
     RequestErrors.NOT_FOUND "File not found."
     ] >=> log logger logFormat;

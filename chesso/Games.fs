@@ -68,8 +68,15 @@ let newUser displayName email password : User =
 let getUser cont =
   "displayName" >>. (fun a -> "email" >>. (fun b -> "password" >>. (fun c -> cont a b c)))
 
+let getLogin cont =
+  "email" >>. (fun b -> "password" >>. (fun c -> cont b c))
+
 let createUser =
   getUser(fun displayName email password ->
     let user = newUser displayName email password
     Database.saveUser user
     Successful.OK (sprintf "Created user %s" user.id))
+
+let logonUser =
+  getLogin(fun email password ->
+    Successful.OK (sprintf "User %s logged on" email))
