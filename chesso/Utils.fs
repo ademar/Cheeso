@@ -22,3 +22,5 @@ let hashUserPassword (pwd: string) =
   use hasher = new SHA256Managed()
   let bss = hasher.ComputeHash(bs)
   Encoding.UTF8.GetString bss, salt
+
+let utcNow _ = DateTime.UtcNow

@@ -29,8 +29,8 @@ let app : WebPart =
       Files.browseHome
       ]
     POST >=> choose [
-      path "/createGame" >=> requiresAuthentication Games.createGame    
-      path "/createUser" >=> Games.createUser
+      path "/createGame" >=> requiresAuthentication Games.createGame
+      path "/signin" >=> Games.createUser
       ]
     RequestErrors.NOT_FOUND "File not found."
     ] >=> log logger logFormat;

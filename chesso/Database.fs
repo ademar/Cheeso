@@ -20,6 +20,6 @@ let open_connection () =
 let saveUser (user: User) =
   use cn = open_connection ()
   let tx = sql cn
-  tx.Query "INSERT INTO Users (id,displayName,email,passwordEncrypted,salt) VALUES (%s,%s,%s,%s,%s)" 
-    user.id user.displayName user.email user.encryptedPassword user.salt
+  tx.Query "INSERT INTO Users (id,displayName,email,encryptedPassword,salt,createdOn,lastSeen) VALUES (%s,%s,%s,%s,%s,%s,%s)" 
+    user.id user.displayName user.email user.encryptedPassword user.salt user.createdOn user.lastSeen
   |> executeNonQuery

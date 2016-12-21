@@ -39,4 +39,6 @@ type User = {
   displayName : string
   email : string
   encryptedPassword : string
-  salt : string }
+  salt : string
+  createdOn : string
+  lastSeen : string }
