@@ -5,4 +5,4 @@ open Suave.Logging
 
 let emptyArrSeg = ArraySegment<byte>([||]);
 
-let logger = Targets.create Verbose
+let logger = Targets.create Verbose [| "Cheeso" |]

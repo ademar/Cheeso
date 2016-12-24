@@ -56,10 +56,10 @@
     <Content Include="Views\default.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Views\signin.cshtml">
+    <Content Include="Views\signin.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-	<Content Include="Views\signup.cshtml">
+    <Content Include="Views\signup.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="css\chessboard-0.3.0.css">
@@ -126,15 +126,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Suave">
-      <HintPath>..\packages\Suave.2.0.0-rc3\lib\net40\Suave.dll</HintPath>
+      <HintPath>..\packages\Suave.2.0.0-rc6\lib\net40\Suave.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Suave.Experimental">
-      <HintPath>..\packages\Suave.Experimental.2.0.0-rc3\lib\net40\Suave.Experimental.dll</HintPath>
+      <HintPath>..\packages\Suave.Experimental.2.0.0-rc6\lib\net40\Suave.Experimental.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Suave.Razor">
-      <HintPath>..\packages\Suave.Razor.2.0.0-rc3\lib\net40\Suave.Razor.dll</HintPath>
+      <HintPath>..\packages\Suave.Razor.2.0.0-rc6\lib\net40\Suave.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

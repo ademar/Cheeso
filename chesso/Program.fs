@@ -40,7 +40,7 @@ let config port =
     { defaultConfig with
        bindings = 
          [ { scheme = HTTP ; socketBinding = { ip = IPAddress.Parse "0.0.0.0" ; port = port }}; ]
-       logger = Targets.create Verbose
+       logger = Targets.create Verbose [| "Suave" |]
     }
 
 [<EntryPoint>]

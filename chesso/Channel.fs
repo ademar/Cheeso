@@ -25,7 +25,7 @@ let wsHandler userId gameId (webSocket : WebSocket) (cx : HttpContext) =
           Async.AwaitEvent theyMoved.Publish
         let bts = toJson msg
         let txt = UTF8.toString bts
-        logger.logSimple(event Verbose (sprintf "received:%s" txt))
+        logger.verbose <| fun x -> event x (sprintf "Received:%s" txt)
         // relay adversary move upstream
         let! u = webSocket.send Text (ArraySegment(bts)) true
         match u with
